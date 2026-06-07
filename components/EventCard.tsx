@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 
 interface EventCardProps {
-  icon: string
+  icon: ReactNode
   name: string
   description: string
 }
@@ -52,15 +52,13 @@ export default function EventCard({ icon, name, description }: EventCardProps) {
       }}
     >
       {/* Icon */}
-      <motion.span
+      <motion.div
         variants={reducedMotion ? {} : iconVariants}
-        className="block mb-4"
-        style={{ fontSize: '2.5rem', lineHeight: 1 }}
-        role="img"
-        aria-label={name.toLowerCase()}
+        className="mb-4"
+        style={{ color: 'var(--color-blue)' }}
       >
         {icon}
-      </motion.span>
+      </motion.div>
 
       {/* Event name */}
       <h3

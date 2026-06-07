@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import ScrollReveal from './ScrollReveal'
+import { CameraIcon } from './icons/EventIcons'
 
 const TILES = [
   {
@@ -107,8 +108,8 @@ export default function GalleryTeaser() {
                   style={{ background: tile.gradient }}
                 >
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-10 pointer-events-none">
-                    <span style={{ fontSize: '2rem', lineHeight: 1 }} aria-hidden="true">
-                      📷
+                    <span style={{ color: 'var(--color-muted)' }}>
+                      <CameraIcon />
                     </span>
                     <span
                       style={{

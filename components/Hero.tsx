@@ -196,7 +196,7 @@ export default function Hero() {
                 e.currentTarget.style.backgroundColor = 'var(--color-blue)'
               }}
             >
-              BOOK US
+              BOOK NOW
             </Link>
           </motion.div>
 

@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { CloseIcon } from './icons/EventIcons'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -15,6 +17,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -53,16 +56,35 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[var(--color-white)] uppercase tracking-widest text-sm transition-colors duration-200 hover:text-[var(--color-blue)]"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href
+            return (
+              <div
+                key={link.href}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}
+              >
+                <Link
+                  href={link.href}
+                  className={`uppercase tracking-widest text-sm transition-colors duration-200 ${
+                    isActive ? 'text-[var(--color-blue)]' : 'text-white hover:text-[var(--color-blue)]'
+                  }`}
+                  style={{ fontFamily: 'var(--font-body)' }}
+                >
+                  {link.label}
+                </Link>
+                <span
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    height: '2px',
+                    backgroundColor: isActive ? 'var(--color-blue)' : 'transparent',
+                    borderRadius: '1px',
+                    transition: 'background-color 0.2s ease',
+                  }}
+                />
+              </div>
+            )
+          })}
           <Link
             href="/contact"
             className="book-now-btn px-6 py-2 rounded text-sm uppercase transition-all duration-200"
@@ -115,12 +137,12 @@ export default function Navbar() {
           >
             {/* Close button */}
             <button
-              className="absolute top-6 right-6 text-2xl leading-none p-2 transition-colors duration-200"
+              className="absolute top-6 right-6 p-2 transition-opacity duration-200 hover:opacity-60"
               style={{ color: 'var(--color-white)' }}
               onClick={() => setMenuOpen(false)}
               aria-label="Close navigation menu"
             >
-              ✕
+              <CloseIcon />
             </button>
 
             {/* Logo in menu */}
@@ -136,35 +158,38 @@ export default function Navbar() {
 
             {/* Mobile nav links */}
             <nav className="flex flex-col gap-8">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.08 + i * 0.08, duration: 0.3 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="uppercase tracking-tight transition-colors duration-200"
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '2.5rem',
-                      fontWeight: 800,
-                      color: 'var(--color-white)',
-                      letterSpacing: '-0.01em',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = 'var(--color-blue)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.color = 'var(--color-white)'
-                    }}
+              {navLinks.map((link, i) => {
+                const isActive = pathname === link.href
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.08 + i * 0.08, duration: 0.3 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="uppercase tracking-tight transition-colors duration-200"
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '2.5rem',
+                        fontWeight: 800,
+                        color: isActive ? 'var(--color-blue)' : 'var(--color-white)',
+                        letterSpacing: '-0.01em',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = 'var(--color-blue)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = isActive ? 'var(--color-blue)' : 'var(--color-white)'
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                )
+              })}
 
               <motion.div
                 initial={{ opacity: 0, x: 30 }}

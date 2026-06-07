@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
+import { LocationIcon, PhoneIcon } from './icons/EventIcons'
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
@@ -135,19 +136,29 @@ export default function Footer() {
                 GET IN TOUCH
               </h3>
 
-              <div className="flex flex-col gap-2">
-                <p
-                  className="text-sm"
-                  style={{ color: 'var(--color-muted)', fontFamily: 'var(--font-body)' }}
-                >
-                  📍 Bristol, UK
-                </p>
-                <p
-                  className="text-sm"
-                  style={{ color: 'var(--color-muted)', fontFamily: 'var(--font-body)' }}
-                >
-                  📱 Available for bookings nationwide
-                </p>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <span style={{ color: 'var(--color-blue)', flexShrink: 0 }}>
+                    <LocationIcon />
+                  </span>
+                  <span
+                    className="text-sm"
+                    style={{ color: 'var(--color-muted)', fontFamily: 'var(--font-body)' }}
+                  >
+                    Bristol, UK
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span style={{ color: 'var(--color-blue)', flexShrink: 0 }}>
+                    <PhoneIcon />
+                  </span>
+                  <span
+                    className="text-sm"
+                    style={{ color: 'var(--color-muted)', fontFamily: 'var(--font-body)' }}
+                  >
+                    Available for bookings nationwide
+                  </span>
+                </div>
               </div>
 
               <Link

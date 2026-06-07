@@ -1,56 +1,74 @@
 'use client'
 
+import { type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import EventCard from './EventCard'
 import ScrollReveal from './ScrollReveal'
+import {
+  WeddingIcon,
+  ClubNightIcon,
+  CarnivalIcon,
+  BirthdayIcon,
+  CorporateIcon,
+  PrivateHireIcon,
+  CeremonyIcon,
+  CommunityIcon,
+  PopUpIcon,
+} from './icons/EventIcons'
 
-const EVENTS = [
+type EventData = {
+  icon: ReactNode
+  name: string
+  description: string
+}
+
+const EVENTS: EventData[] = [
   {
-    icon: '💍',
+    icon: <WeddingIcon />,
     name: 'WEDDINGS',
     description: 'Make your special day unforgettable with the perfect soundtrack.',
   },
   {
-    icon: '🌙',
+    icon: <ClubNightIcon />,
     name: 'CLUB NIGHTS',
     description: 'Late night sessions, venue events and dance parties done right.',
   },
   {
-    icon: '🎊',
+    icon: <CarnivalIcon />,
     name: 'CARNIVALS & FESTIVALS',
     description: 'Massive stages, massive crowds, massive energy.',
   },
   {
-    icon: '🎂',
+    icon: <BirthdayIcon />,
     name: 'BIRTHDAY PARTIES',
     description: 'From intimate gatherings to full-scale celebrations.',
   },
   {
-    icon: '🏢',
+    icon: <CorporateIcon />,
     name: 'CORPORATE EVENTS',
     description: 'Professional sound for conferences, launches and brand events.',
   },
   {
-    icon: '🎉',
+    icon: <PrivateHireIcon />,
     name: 'PRIVATE HIRE',
     description: 'Your event, your vibe — we bring the sound system to you.',
   },
   {
-    icon: '🙏',
+    icon: <CeremonyIcon />,
     name: 'CEREMONIES',
     description: "Respectful, powerful sound for life's most meaningful moments.",
   },
   {
-    icon: '🌍',
+    icon: <CommunityIcon />,
     name: 'COMMUNITY EVENTS',
     description: "Proudly supporting Bristol's vibrant cultural community.",
   },
   {
-    icon: '🎪',
+    icon: <PopUpIcon />,
     name: 'POP-UPS & MARKETS',
     description: 'Outdoor events, street markets and pop-up experiences.',
   },
-] as const
+]
 
 const gridVariants = {
   hidden: { opacity: 0 },

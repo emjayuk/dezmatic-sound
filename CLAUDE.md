@@ -10,6 +10,23 @@ Premium 5-page website for Dezmatic Sound, a Caribbean and international sound s
 - React Three Fiber + Three.js for 3D hero scene
 - next/font for Syne (display) and Outfit (body)
 
+## Skills (Always Read Before UI Work)
+- Frontend Design: ./skills/frontend-design/SKILL.md
+- UI/UX Pro Max: ./skills/ui-ux-pro-max/SKILL.md
+- Frontend Patterns: ./skills/frontend-patterns/SKILL.md
+- Design System: ./skills/design-system/SKILL.md
+- Design Review: ./skills/design-review/SKILL.md
+- Liquid Glass Design: ./skills/liquid-glass-design/SKILL.md
+- QA: ./skills/qa/SKILL.md
+- Ship: ./skills/ship/SKILL.md
+
+## Skill Invocation Rules
+- Before ANY UI component or page work: read frontend-design + ui-ux-pro-max
+- Before ANY design decision: read design-review + design-system
+- Before ANY deployment: read ship + github-ops
+- Before ANY testing: read playwright-pro + qa
+- Never skip skill reads — they are mandatory, not optional
+
 ## Design System
 - --color-bg: #0D0D0D
 - --color-blue: #4DB8E8
