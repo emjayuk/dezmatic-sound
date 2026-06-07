@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0D0D0D;
+  --color-blue: #4DB8E8;
+  --color-orange: #F5A623;
+  --color-gold: #FFD700;
+  --color-white: #FFFFFF;
+  --color-muted: #A0A0A0;
+  --color-surface: #1A1A1A;
+
+  --font-display: var(--font-syne);
+  --font-body: var(--font-outfit);
+
+  --spacing-section: 6rem;
+  --radius-card: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-white);
+  font-family: var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.text-display {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  text-transform: uppercase;
+}
+
+.text-display-md {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.text-body {
+  font-family: var(--font-body), sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--color-blue);
+  color: var(--color-bg);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-blue);
+  border-radius: 3px;
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 24px #4DB8E8) drop-shadow(0 0 48px #4DB8E8aa);
+  }
+  50% {
+    filter: drop-shadow(0 0 24px #F5A623) drop-shadow(0 0 48px #F5A623aa);
+  }
+}
+
+.logo-glow {
+  animation: logoPulse 4s ease-in-out infinite;
+}
+
+.hero-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  background-repeat: repeat;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245, 166, 35, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px 5px rgba(245, 166, 35, 0.35);
+  }
+}
+
+.book-now-btn {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes bannerGradient {
+  0%, 100% { background-color: #0D0D0D; }
+  50% { background-color: #0a1628; }
+}
+
+.banner-gradient {
+  animation: bannerGradient 6s ease-in-out infinite;
+}
+
+@keyframes ctaGlow {
+  0%, 100% { box-shadow: 0 0px transparent; }
+  50% { box-shadow: 0 0 24px #F5A623aa, 0 0 48px #F5A623, 0 0 2px #F5A623; }
+}
+
+.cta-glow {
+  animation: ctaGlow 2.5s ease-in-out infinite;
+}
+
+/* Footer nav link — underline slides in from left */
+.footer-nav-link {
+  position: relative;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.footer-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-white);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.footer-nav-link:hover {
+  color: var(--color-white) !important;
+}
+
+.footer-nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Footer social icon links */
+.social-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: var(--color-white);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.social-icon-link:hover {
+  background-color: var(--color-surface);
+  color: var(--color-blue);
+}
+
+/* Footer Book Now button */
+.footer-book-btn {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.footer-book-btn:hover {
+  background-color: var(--color-blue);
+  color: var(--color-bg) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
