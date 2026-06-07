@@ -30,6 +30,10 @@ export const metadata: Metadata = {
       'Dancehall, Reggae, Afrobeats, Soca and Hip Hop. Available for every event.',
     type: 'website',
   },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
