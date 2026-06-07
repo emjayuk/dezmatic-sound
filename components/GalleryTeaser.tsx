@@ -1,28 +1,16 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import ScrollReveal from './ScrollReveal'
-import { CameraIcon } from './icons/EventIcons'
 
 const TILES = [
-  {
-    label: 'CLUB NIGHT',
-    gradient: 'linear-gradient(135deg, #1a1a2e 0%, #4DB8E8 100%)',
-  },
-  {
-    label: 'WEDDING VIBES',
-    gradient: 'linear-gradient(135deg, #1a1a1a 0%, #F5A623 100%)',
-  },
-  {
-    label: 'CARNIVAL ENERGY',
-    gradient: 'linear-gradient(135deg, #0d1117 0%, #4DB8E8 100%)',
-  },
-  {
-    label: 'PRIVATE PARTY',
-    gradient: 'linear-gradient(135deg, #1a1a1a 0%, #F5A623 100%)',
-  },
-] as const
+  { src: '/gallery/event-crowd-1.jpg', alt: 'Dezmatic Sound event crowd' },
+  { src: '/gallery/event-night-1.jpg', alt: 'Dezmatic Sound night event' },
+  { src: '/gallery/event-vibes-1.png', alt: 'Dezmatic Sound event vibes' },
+  { src: '/gallery/event-stage-1.png', alt: 'Dezmatic Sound stage energy' },
+]
 
 const tileVariants = {
   hidden: { opacity: 0 },
@@ -95,54 +83,41 @@ export default function GalleryTeaser() {
           className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14"
         >
           {TILES.map((tile) => (
-            <motion.div key={tile.label} variants={reducedMotion ? {} : tileItemVariants}>
-              <div
-                className="overflow-hidden rounded-xl relative"
-                style={{ aspectRatio: '4/3' }}
-              >
-                <motion.div
-                  initial="rest"
-                  whileHover={reducedMotion ? undefined : 'hover'}
-                  variants={reducedMotion ? {} : tileHoverVariants}
-                  className="relative w-full h-full cursor-pointer"
-                  style={{ background: tile.gradient }}
-                >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-10 pointer-events-none">
-                    <span style={{ color: 'var(--color-muted)' }}>
-                      <CameraIcon />
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontWeight: 800,
-                        color: 'rgba(255,255,255,0.75)',
-                        fontSize: '1.25rem',
-                        letterSpacing: '0.04em',
-                        textTransform: 'uppercase',
-                      }}
-                    >
-                      {tile.label}
-                    </span>
-                  </div>
-
+            <motion.div key={tile.src} variants={reducedMotion ? {} : tileItemVariants}>
+              <Link href="/gallery">
+                <div className="overflow-hidden rounded-xl relative aspect-video">
                   <motion.div
-                    variants={reducedMotion ? {} : overlayVariants}
-                    className="absolute inset-0 flex items-center justify-center z-20"
-                    style={{ backgroundColor: 'rgba(0,0,0,0.55)' }}
+                    initial="rest"
+                    whileHover={reducedMotion ? undefined : 'hover'}
+                    variants={reducedMotion ? {} : tileHoverVariants}
+                    className="relative w-full h-full"
                   >
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        color: 'var(--color-white)',
-                        fontSize: '1.75rem',
-                        letterSpacing: '0.08em',
-                      }}
+                    <Image
+                      src={tile.src}
+                      alt={tile.alt}
+                      fill
+                      className="object-cover object-center"
+                    />
+
+                    <motion.div
+                      variants={reducedMotion ? {} : overlayVariants}
+                      className="absolute inset-0 flex items-center justify-center z-20"
+                      style={{ backgroundColor: 'rgba(0,0,0,0.55)' }}
                     >
-                      VIEW GALLERY →
-                    </span>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-display)',
+                          color: 'var(--color-white)',
+                          fontSize: '1.75rem',
+                          letterSpacing: '0.08em',
+                        }}
+                      >
+                        VIEW GALLERY →
+                      </span>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
